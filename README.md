@@ -1,11 +1,11 @@
 # OpenScrape
 
-OpenScrape is a Python library for scraping data from various services. While it currently specializes in Google search, we plan to expand its capabilities to scrape from a variety of other services.
+OpenScrape is a Python library for scraping data from various services. Currently, it supports Google search, Nikkei stock prices, and real-time anime rankings in Japan (d Anime Ranking). We plan to expand its capabilities to scrape from a variety of other services in the future.
 
 ## Features
 
 - Asynchronous scraping: OpenScrape uses Python's asyncio to perform non-blocking I/O operations, making it efficient for large scale scraping tasks.
-- Google search: Currently, OpenScrape supports scraping search results from Google. You can specify the search search, number of results, and language.
+- Support for multiple services: Currently, OpenScrape supports scraping search results from Google, Nikkei stock prices, and real-time anime rankings in Japan (d Anime Ranking).
 - Synchronous scraping: OpenScrape now also supports synchronous operations, allowing for more flexibility in how you use the library.
 
 ## Future Plans
@@ -55,13 +55,15 @@ if __name__ == "__main__":
 
 This script performs a synchronous Google search for the search "test", and prints the first result in Japanese.
 
+Sample codes for Jupyter can be found at this [link](https://github.com/umaxiaotian/OpenScrape/tree/main/example).
+
 ## Warning
 Please refer to the robots.txt of each website when crawling from this library.
 | Website | Robots.txt URL |
 | --- | --- |
-| 日本経済新聞社 | [https://www.nikkei.com/robots.txt](https://www.nikkei.com/robots.txt) |
+| Nikkei | [https://www.nikkei.com/robots.txt](https://www.nikkei.com/robots.txt) |
 | Google LLC | [https://www.google.com/robots.txt](https://www.google.com/robots.txt) |
-| dアニメストア | [https://animestore.docomo.ne.jp/robots.txt](https://animestore.docomo.ne.jp/robots.txt) |
+| d Anime Store | [https://animestore.docomo.ne.jp/robots.txt](https://animestore.docomo.ne.jp/robots.txt) |
 
 
 ## Contributing
