@@ -5,12 +5,12 @@ OpenScrape is a Python library for scraping data from various services. While it
 ## Features
 
 - Asynchronous scraping: OpenScrape uses Python's asyncio to perform non-blocking I/O operations, making it efficient for large scale scraping tasks.
-- Google search: Currently, OpenScrape supports scraping search results from Google. You can specify the search term, number of results, and language.
+- Google search: Currently, OpenScrape supports scraping search results from Google. You can specify the search search, number of results, and language.
+- Synchronous scraping: OpenScrape now also supports synchronous operations, allowing for more flexibility in how you use the library.
 
 ## Future Plans
 
 - More services: We plan to extend OpenScrape to support scraping from a variety of other services.
-- Synchronous scraping: While OpenScrape currently only supports asynchronous operations, we plan to add support for synchronous operations in the future.
 
 ## Installation
 
@@ -22,21 +22,38 @@ pip install OpenScrape
 
 ## Usage
 
-Here is an example of how to use OpenScrape to perform a Google search:
+Here are examples of how to use OpenScrape to perform a Google search:
+
+### Asynchronous
 
 ```python
 import asyncio
 from OpenScrape import google
 
 async def main():
-    result = await google.asyncsearch(term="test", num_results=2, lang="ja")
+    result = await google.asyncsearch(search="test", num_results=2, lang="ja")
     print(result)
 
 if __name__ == "__main__":
     asyncio.run(main())
 ```
 
-This script performs an asynchronous Google search for the term "test", and prints the first two results in Japanese.
+This script performs an asynchronous Google search for the search "test", and prints the first two results in Japanese.
+
+### Synchronous
+
+```python
+from OpenScrape import google
+
+def main():
+    result = google.search(search="test",num_results=1,lang="ja")
+    print(result)
+
+if __name__ == "__main__":
+    main()
+```
+
+This script performs a synchronous Google search for the search "test", and prints the first result in Japanese.
 
 ## Contributing
 

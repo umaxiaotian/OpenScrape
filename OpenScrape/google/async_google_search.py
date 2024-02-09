@@ -6,12 +6,12 @@ from .user_agents import get_useragent
 import urllib
 
 
-async def _req(session, term, results, lang, start, timeout):
+async def _req(session, search, results, lang, start, timeout):
     async with session.get(
         url="https://www.google.com/search",
         headers={"User-Agent": get_useragent()},
         params={
-            "q": term,
+            "q": search,
             "num": results + 2,
             "hl": lang,
             "start": start,
@@ -22,7 +22,7 @@ async def _req(session, term, results, lang, start, timeout):
         return await resp.text()
 
 
-async def search(term, num_results=10, lang="en", sleep_interval=0, timeout=5):
+async def search(search, num_results=10, lang="en", sleep_interval=0, timeout=5):
     """
     Asynchronously search the Google search engine and return the search results.
 
@@ -31,7 +31,7 @@ async def search(term, num_results=10, lang="en", sleep_interval=0, timeout=5):
     of dictionaries, each representing a search result.
 
     Args:
-        term (str): The search term to query.
+        search (str): The search search to query.
         num_results (int, optional): The number of search results to return. Defaults to 10.
         lang (str, optional): The language for the search results. Defaults to 'en'.
         sleep_interval (int, optional): The number of seconds to wait between each request. Defaults to 0.
@@ -45,14 +45,14 @@ async def search(term, num_results=10, lang="en", sleep_interval=0, timeout=5):
         aiohttp.ClientResponseError: If the request to Google fails.
     """
 
-    escaped_term = urllib.parse.quote_plus(term)
+    escaped_search = urllib.parse.quote_plus(search)
 
     result_google_search = []
     start = 0
     async with ClientSession() as session:
         while start < num_results:
             resp_text = await _req(
-                session, escaped_term, num_results - start, lang, start, timeout
+                session, escaped_search, num_results - start, lang, start, timeout
             )
             soup = BeautifulSoup(resp_text, "html.parser")
             result_block = soup.find_all("div", attrs={"class": "g"})
