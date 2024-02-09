@@ -57,6 +57,12 @@ This script performs a synchronous Google search for the search "test", and prin
 
 ## Warning
 Please refer to the robots.txt of each website when crawling from this library.
+| Website | Robots.txt URL |
+| --- | --- |
+| 日本経済新聞社 | [https://www.nikkei.com/robots.txt](https://www.nikkei.com/robots.txt) |
+| Google LLC | [https://www.google.com/robots.txt](https://www.google.com/robots.txt) |
+| dアニメストア | [https://animestore.docomo.ne.jp/robots.txt](https://animestore.docomo.ne.jp/robots.txt) |
+
 
 ## Contributing
 
