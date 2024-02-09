@@ -4,6 +4,24 @@ from .user_agents import get_useragent
 
 
 async def get_current_value(scode):
+    """
+    Get the current stock information from the Nikkei website.
+
+    Args:
+        scode (str): The stock code to get the information.
+
+    Returns:
+        dict: A dictionary containing the stock information. The keys are:
+            - 'company_name': The name of the company.
+            - 'current_price': The current price of the stock.
+            - 'previous_day_comparison': The comparison with the previous day.
+            - 'open_price': The opening price of the stock.
+            - 'high_price': The highest price of the stock.
+            - 'low_price': The lowest price of the stock.
+            - 'volume': The volume of the stock.
+            - 'expected_per': The expected price-earnings ratio.
+            - 'expected_dividend_yield': The expected dividend yield.
+    """
     url = "https://www.nikkei.com/nkd/company/"
     async with aiohttp.ClientSession() as session:
         async with session.get(
@@ -83,6 +101,22 @@ async def get_current_value(scode):
 
 
 async def get_stock_history(scode):
+    """
+    Get the stock history from the Nikkei website.
+
+    Args:
+        scode (str): The stock code to get the information.
+
+    Returns:
+        list: A list of dictionaries containing the stock history. Each dictionary has the following keys:
+            - 'date': The date of the stock data.
+            - 'open_price': The opening price of the stock.
+            - 'high_price': The highest price of the stock.
+            - 'low_price': The lowest price of the stock.
+            - 'close_price': The closing price of the stock.
+            - 'volume': The volume of the stock.
+            - 'adjusted_close_price': The adjusted closing price of the stock.
+    """
     url = "https://www.nikkei.com/nkd/company/history/dprice/"
     params = {"scode": scode, "ba": "1"}
 
