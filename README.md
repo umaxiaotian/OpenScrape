@@ -17,7 +17,7 @@ OpenScrape is a Python library for scraping data from various services. While it
 You can install OpenScrape using pip:
 
 ```bash
-pip install OpenScrape
+pip install git+https://github.com/umaxiaotian/OpenScrape.git@main
 ```
 
 ## Usage
