@@ -1,0 +1,2 @@
+from .get_ranking import get_anime_rank
+from .async_get_ranking_from_danime import get_anime_rank as async_get_ranking

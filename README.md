@@ -31,7 +31,7 @@ import asyncio
 from OpenScrape import google
 
 async def main():
-    result = await google.asyncsearch(search="test", num_results=2, lang="ja")
+    result = await google.async_search(search="test", num_results=2, lang="ja")
     print(result)
 
 if __name__ == "__main__":
