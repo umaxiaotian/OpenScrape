@@ -1,7 +1,7 @@
 import aiohttp
 from bs4 import BeautifulSoup
 from .user_agents import get_useragent
-
+import re
 
 async def get_current_value(scode):
     """
@@ -136,7 +136,7 @@ async def get_stock_history(scode):
 
             for row in rows[1:]:  # ヘッダーをスキップする。
                 data = row.find_all("td")
-                date = row.find("th").get_text(strip=True)
+                date = re.sub('（.*）', '', row.find("th").get_text(strip=True)) 
                 open_price = data[0].get_text(strip=True)
                 high_price = data[1].get_text(strip=True)
                 low_price = data[2].get_text(strip=True)
