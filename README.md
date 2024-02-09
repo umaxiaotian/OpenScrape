@@ -55,6 +55,9 @@ if __name__ == "__main__":
 
 This script performs a synchronous Google search for the search "test", and prints the first result in Japanese.
 
+## Warning
+Please do not send a large number of requests using this application. It is recommended for experimental purposes.
+
 ## Contributing
 
 We welcome contributions to OpenScrape! Please see our [contributing guide](CONTRIBUTING.md) for more details.
