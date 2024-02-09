@@ -1,55 +1,47 @@
-# OpenScrape API
+# OpenScrape
 
-OpenScrape is a powerful application that integrates with various services to scrape information. The scraped data is provided through a REST API. 
+OpenScrape is a Python library for scraping data from various services. While it currently specializes in Google search, we plan to expand its capabilities to scrape from a variety of other services.
 
-## Version
-The current version of this API is 1.0.
+## Features
 
-## Endpoints
+- Asynchronous scraping: OpenScrape uses Python's asyncio to perform non-blocking I/O operations, making it efficient for large scale scraping tasks.
+- Google search: Currently, OpenScrape supports scraping search results from Google. You can specify the search term, number of results, and language.
 
-### GET /search/google
+## Future Plans
 
-This endpoint allows you to search Google and retrieve the results.
+- More services: We plan to extend OpenScrape to support scraping from a variety of other services.
+- Synchronous scraping: While OpenScrape currently only supports asynchronous operations, we plan to add support for synchronous operations in the future.
 
-#### Request
+## Installation
 
-The request body should be a JSON object with the following properties:
-
-- `search` (string, required): The content to search for.
-- `num_results` (integer, optional, default: 5): The number of search results to retrieve.
-- `lang` (string, optional, default: "ja"): The language to use for the search.
-- `sleep_interval` (integer, optional, default: 1): The wait time (in seconds) between search requests.
-
-Example:
-
-```json
-{
-    "search": "OpenAI",
-    "num_results": 10,
-    "lang": "en",
-    "sleep_interval": 2
-}
-```
-
-## Example Request with cURL
-
-You can use cURL to send a request to the `/search/google` endpoint. Here is an example:
+You can install OpenScrape using pip:
 
 ```bash
-curl --location --request GET 'http://127.0.0.1:8080/search/google' \
---header 'Content-Type: application/json' \
---data '{
-  "search": "umaxiaotian",
-  "num_results": 3,
-  "lang": "ja",
-  "sleep_interval":5
-}'
+pip install OpenScrape
 ```
 
-In this example, we are searching for "umaxiaotian", and we want to retrieve 3 results. We are using Japanese for the search, and we are waiting for 5 seconds between each search request.
+## Usage
 
+Here is an example of how to use OpenScrape to perform a Google search:
 
-## Warning
-Please exercise caution and ensure that you only use OpenScrape API for research purposes. Be mindful of the terms of service of websites to avoid any violation related to web scraping. Additionally, take into consideration that many websites employ security measures to prevent scraping activities. Adjust the sleep_interval setting accordingly to avoid sending an excessive number of requests or being blocked.
+```python
+import asyncio
+from OpenScrape import google
 
-If you have any further questions or concerns, please let me know.
+async def main():
+    result = await google.asyncsearch(term="test", num_results=2, lang="ja")
+    print(result)
+
+if __name__ == "__main__":
+    asyncio.run(main())
+```
+
+This script performs an asynchronous Google search for the term "test", and prints the first two results in Japanese.
+
+## Contributing
+
+We welcome contributions to OpenScrape! Please see our [contributing guide](CONTRIBUTING.md) for more details.
+
+## License
+
+OpenScrape is licensed under the [MIT License](LICENSE).
