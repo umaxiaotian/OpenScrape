@@ -42,7 +42,12 @@ async def get_current_value(scode):
             # 前日比を取得
             previous_day_comparison = soup.find(
                 "dd", {"class": "m-stockPriceElm_value comparison plus"}
-            ).get_text(strip=True)
+            )
+            if previous_day_comparison is None:
+                previous_day_comparison = soup.find(
+                    "dd", {"class": "m-stockPriceElm_value comparison minus"}
+                )
+            previous_day_comparison = previous_day_comparison.get_text(strip=True)
 
             # 始値
             open_price = (
