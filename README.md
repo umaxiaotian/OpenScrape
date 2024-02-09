@@ -56,7 +56,7 @@ if __name__ == "__main__":
 This script performs a synchronous Google search for the search "test", and prints the first result in Japanese.
 
 ## Warning
-Please do not send a large number of requests using this application. It is recommended for experimental purposes.
+Please refer to the robots.txt of each website when crawling from this library.
 
 ## Contributing
 
