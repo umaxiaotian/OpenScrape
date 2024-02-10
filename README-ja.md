@@ -1,6 +1,6 @@
 # OpenScrape
 
-OpenScrapeは、様々なサービスからデータをスクレイピングするためのPythonライブラリです。現在はGoogle検索、日経株価、日本国内のリアルタイムアニメランキング（dアニメランキング）に対応しておりますが、今後は他の様々なサービスからのスクレイピングに対応する予定です。
+OpenScrapeは、様々なサービスからデータをスクレイピングするためのPythonライブラリです。現在はGoogle検索、日経株価、日本国内のリアルタイムアニメランキング（dアニメランキング）に対応しており、さらにほとんどのウェブサイトからのスクレイピングもサポートしています。今後はユーザーからのフィードバックに基づき、必要な機能を追加していく予定です。具体的な要望や問題は、GitHubのISSUEにてお知らせください。
 
 ## 特徴
 
@@ -10,7 +10,7 @@ OpenScrapeは、様々なサービスからデータをスクレイピングす�
 
 ## 今後の計画
 
-- より多くのサービス: OpenScrapeを他の様々なサービスからスクレイピングできるように拡張する予定です。
+- より多くのサービス: OpenScrapeを他の様々なサービスからスクレイピングできるように拡張する予定です。具体的な要望や問題は、GitHubのISSUEにてお知らせください。
 
 ## インストール
 
@@ -22,38 +22,38 @@ pip install git+https://github.com/umaxiaotian/OpenScrape.git@main
 
 ## 使用方法
 
-以下に、OpenScrapeを使用してGoogle検索を行う例を示します：
+以下に、OpenScrapeを使用して任意のウェブサイトをスクレイピングする例を示します：
 
 ### 非同期
 
 ```python
 import asyncio
-from OpenScrape import google
+from OpenScrape import any_websites
 
 async def main():
-    result = await google.async_search(search="test", num_results=2, lang="ja")
+    result = await any_websites.async_crawl("https://www.bloomberg.co.jp/news/articles/2024-01-05/S6PKIWT0AFB400")
     print(result)
 
 if __name__ == "__main__":
     asyncio.run(main())
 ```
 
-このスクリプトは、"test"の検索を非同期でGoogle検索し、日本語で最初の2つの結果を表示します。
+このスクリプトは、指定したURLのウェブページを非同期にスクレイピングし、そのページのタイトルと本文を表示します。
 
 ### 同期
 
 ```python
-from OpenScrape import google
+from OpenScrape import any_websites
 
 def main():
-    result = google.search(search="test",num_results=1,lang="ja")
+    result = any_websites.crawl("https://www.bloomberg.co.jp/news/articles/2024-01-05/S6PKIWT0AFB400")
     print(result)
 
 if __name__ == "__main__":
     main()
 ```
 
-このスクリプトは、"test"の検索を同期的にGoogle検索し、日本語で最初の結果を表示します。
+このスクリプトは、指定したURLのウェブページを同期的にスクレイピングし、そのページのタイトルと本文を表示します。
 
 Jupyterのサンプルコードは[こちらのリンク](https://github.com/umaxiaotian/OpenScrape/tree/main/example)からご覧いただけます。
 
