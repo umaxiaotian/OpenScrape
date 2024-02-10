@@ -1,7 +1,7 @@
 import aiohttp
 from bs4 import BeautifulSoup
 
-async def search(query, num_results):
+async def search(query:str, num_results:int):
     """
     Searches Bing with the specified search term and retrieves a specified number of search results.
 
