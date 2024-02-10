@@ -6,6 +6,7 @@ from ..user_agents import get_useragent
 def search(search: str, num_results: int):
     """
     Searches Bing with the specified search term and retrieves a specified number of search results.
+    This function also handles search results related to specific entities like people.
 
     Args:
         search (str): The search term.
@@ -21,6 +22,7 @@ def search(search: str, num_results: int):
     Note:
         This function depends on the HTML structure of Bing. If Bing changes its structure, this function may not work correctly.
         Also, be careful not to violate Bing's terms of use.
+
     """
     url = "https://www.bing.com/search"
     params = {
@@ -33,11 +35,30 @@ def search(search: str, num_results: int):
         )
         soup = BeautifulSoup(response.text, "html.parser")
         results = soup.find_all("li", class_="b_algo")
+        entity_results = soup.find_all("li", class_="b_entityTP")  # Add this line
+
+        # Add this block
+        for result in entity_results:
+            if len(results_list) >= num_results:
+                break
+            title = result.find("h2").text
+            link_tag = result.find("a")
+            link = link_tag["href"] if link_tag and "href" in link_tag.attrs else None
+            description = (
+                result.find("div", class_="b_entitySubText").text
+                if result.find("div", class_="b_entitySubText")
+                else ""
+            )
+            results_list.append(
+                {"title": title, "link": link, "description": description}
+            )
+
         for result in results:
             if len(results_list) >= num_results:
                 break
             title = result.find("h2").text
-            link = result.find("a")["href"]
+            link_tag = result.find("a")
+            link = link_tag["href"] if link_tag and "href" in link_tag.attrs else None
             description = result.find("p").text if result.find("p") else ""
             results_list.append(
                 {"title": title, "link": link, "description": description}
