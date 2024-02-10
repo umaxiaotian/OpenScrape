@@ -1,12 +1,12 @@
 import requests
 from bs4 import BeautifulSoup
 
-def search(query:str, num_results:int):
+def search(search:str, num_results:int):
     """
     Searches Bing with the specified search term and retrieves a specified number of search results.
 
     Args:
-        query (str): The search term.
+        search (str): The search term.
         num_results (int): The number of search results to retrieve.
 
     Returns:
@@ -22,7 +22,7 @@ def search(query:str, num_results:int):
     """
     url = "https://www.bing.com/search"
     params = {
-        "q": query,
+        "q": search,
     }
     results_list = []
     while len(results_list) < num_results:
