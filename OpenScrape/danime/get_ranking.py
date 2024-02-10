@@ -1,5 +1,6 @@
 import json
 import requests
+from ..user_agents import get_useragent
 
 
 def get_anime_rank(num_results: int = 1):
@@ -28,7 +29,8 @@ def get_anime_rank(num_results: int = 1):
 
     # アニメランキングを取得する
     response = requests.get(
-        "https://anime.dmkt-sp.jp/animestore/rest/WS000103?rankingType=01"
+        url="https://anime.dmkt-sp.jp/animestore/rest/WS000103?rankingType=01",
+        headers={"User-Agent": get_useragent()},
     )
     data = json.loads(response.text)
 

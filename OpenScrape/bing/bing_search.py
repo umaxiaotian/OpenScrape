@@ -1,7 +1,9 @@
 import requests
 from bs4 import BeautifulSoup
+from ..user_agents import get_useragent
 
-def search(search:str, num_results:int):
+
+def search(search: str, num_results: int):
     """
     Searches Bing with the specified search term and retrieves a specified number of search results.
 
@@ -26,23 +28,23 @@ def search(search:str, num_results:int):
     }
     results_list = []
     while len(results_list) < num_results:
-        response = requests.get(url, params=params)
-        soup = BeautifulSoup(response.text, 'html.parser')
-        results = soup.find_all('li', class_='b_algo')
+        response = requests.get(
+            url=url, headers={"User-Agent": get_useragent()}, params=params
+        )
+        soup = BeautifulSoup(response.text, "html.parser")
+        results = soup.find_all("li", class_="b_algo")
         for result in results:
             if len(results_list) >= num_results:
                 break
-            title = result.find('h2').text
-            link = result.find('a')['href']
-            description = result.find('p').text if result.find('p') else ''
-            results_list.append({
-                "title": title,
-                "link": link,
-                "description": description
-            })
-        next_page = soup.find('a', class_='sb_pagN')
+            title = result.find("h2").text
+            link = result.find("a")["href"]
+            description = result.find("p").text if result.find("p") else ""
+            results_list.append(
+                {"title": title, "link": link, "description": description}
+            )
+        next_page = soup.find("a", class_="sb_pagN")
         if next_page:
-            url = "https://www.bing.com" + next_page['href']
+            url = "https://www.bing.com" + next_page["href"]
         else:
             break
     return results_list

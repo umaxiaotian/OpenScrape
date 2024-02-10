@@ -1,7 +1,9 @@
 import aiohttp
 from bs4 import BeautifulSoup
+from ..user_agents import get_useragent
 
-async def search(search:str, num_results:int):
+
+async def search(search: str, num_results: int):
     """
     Searches Bing with the specified search term and retrieves a specified number of search results.
 
@@ -27,24 +29,24 @@ async def search(search:str, num_results:int):
     results_list = []
     async with aiohttp.ClientSession() as session:
         while len(results_list) < num_results:
-            async with session.get(url, params=params) as response:
+            async with session.get(
+                url=url, headers={"User-Agent": get_useragent()}, params=params
+            ) as response:
                 text = await response.text()
-                soup = BeautifulSoup(text, 'html.parser')
-                results = soup.find_all('li', class_='b_algo')
+                soup = BeautifulSoup(text, "html.parser")
+                results = soup.find_all("li", class_="b_algo")
                 for result in results:
                     if len(results_list) >= num_results:
                         break
-                    title = result.find('h2').text
-                    link = result.find('a')['href']
-                    description = result.find('p').text if result.find('p') else ''
-                    results_list.append({
-                        "title": title,
-                        "link": link,
-                        "description": description
-                    })
-                next_page = soup.find('a', class_='sb_pagN')
+                    title = result.find("h2").text
+                    link = result.find("a")["href"]
+                    description = result.find("p").text if result.find("p") else ""
+                    results_list.append(
+                        {"title": title, "link": link, "description": description}
+                    )
+                next_page = soup.find("a", class_="sb_pagN")
                 if next_page:
-                    url = "https://www.bing.com" + next_page['href']
+                    url = "https://www.bing.com" + next_page["href"]
                 else:
                     break
     return results_list

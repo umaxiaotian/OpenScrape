@@ -1,7 +1,7 @@
 import requests
 from time import sleep
 from bs4 import BeautifulSoup
-from .user_agents import get_useragent
+from ..user_agents import get_useragent
 import urllib
 
 def _req(search, results, lang, start, timeout):

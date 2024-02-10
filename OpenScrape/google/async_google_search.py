@@ -2,7 +2,7 @@ import asyncio
 from time import sleep
 from bs4 import BeautifulSoup
 from aiohttp import ClientSession
-from .user_agents import get_useragent
+from ..user_agents import get_useragent
 import urllib
 
 
