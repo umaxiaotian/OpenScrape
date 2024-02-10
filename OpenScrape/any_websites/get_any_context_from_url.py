@@ -4,7 +4,7 @@ import requests
 from ..user_agents import get_useragent
 
 
-def crawl(url: str) -> str:
+def crawl(url: str) -> dict:
     """
     Crawls the web page of the specified URL, extracts the title and body text,
     and returns them as a JSON-formatted string.
@@ -33,5 +33,4 @@ def crawl(url: str) -> str:
     text = " ".join([p.get_text() for p in paragraphs])
 
     # Output in JSON format
-    data = {"title": title, "text": text}
-    return json.dumps(data, ensure_ascii=False)
+    return {"title": title, "text": text}
