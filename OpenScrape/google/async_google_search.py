@@ -22,7 +22,9 @@ async def _req(session, search, results, lang, start, timeout):
         return await resp.text()
 
 
-async def search(search, num_results=10, lang="en", sleep_interval=0, timeout=5):
+async def search(
+    search, num_results=10, lang="en", sleep_interval=0, timeout=5
+) -> list:
     """
     Asynchronously search the Google search engine and return the search results.
 

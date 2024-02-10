@@ -4,7 +4,7 @@ from bs4 import BeautifulSoup
 from ..user_agents import get_useragent
 
 
-async def crawl(url: str) -> str:
+async def crawl(url: str) -> dict:
     """
     Asynchronously crawls the web page of the specified URL, extracts the title and body text,
     and returns them as a JSON-formatted string.
@@ -33,5 +33,4 @@ async def crawl(url: str) -> str:
             text = " ".join([p.get_text() for p in paragraphs])
 
             # Output in JSON format
-            data = {"title": title, "text": text}
-            return json.dumps(data, ensure_ascii=False)
+            return {"title": title, "text": text}

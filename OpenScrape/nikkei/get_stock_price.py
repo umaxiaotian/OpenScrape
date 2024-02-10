@@ -4,7 +4,7 @@ from ..user_agents import get_useragent
 import re
 
 
-def get_current_value(scode):
+def get_current_value(scode) -> dict:
     """
     Get the current stock information from the Nikkei website.
 
@@ -106,7 +106,7 @@ def get_current_value(scode):
     }
 
 
-def get_stock_history(scode):
+def get_stock_history(scode) -> list:
     """
     Get the stock history from the Nikkei website.
 

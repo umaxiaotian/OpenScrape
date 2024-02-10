@@ -3,7 +3,7 @@ from bs4 import BeautifulSoup
 from ..user_agents import get_useragent
 
 
-def search(search: str, num_results: int):
+def search(search: str, num_results: int) -> list:
     """
     Searches Bing with the specified search term and retrieves a specified number of search results.
     This function also handles search results related to specific entities like people.

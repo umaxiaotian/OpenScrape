@@ -4,6 +4,7 @@ from bs4 import BeautifulSoup
 from ..user_agents import get_useragent
 import urllib
 
+
 def _req(search, results, lang, start, timeout):
     with requests.get(
         url="https://www.google.com/search",
@@ -19,7 +20,8 @@ def _req(search, results, lang, start, timeout):
         resp.raise_for_status()
         return resp.text
 
-def search(search, num_results=10, lang="en", sleep_interval=0, timeout=5):
+
+def search(search, num_results=10, lang="en", sleep_interval=0, timeout=5) -> list:
     """
     Synchronously search the Google search engine and return the search results.
 

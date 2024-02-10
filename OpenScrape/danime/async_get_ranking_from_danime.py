@@ -3,7 +3,7 @@ import aiohttp
 from ..user_agents import get_useragent
 
 
-async def get_anime_rank(num_results: int = 1):
+async def get_anime_rank(num_results: int = 1) -> list:
     """
     Retrieves the top d-anime rankings asynchronously.
 

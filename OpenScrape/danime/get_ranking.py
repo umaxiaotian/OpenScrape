@@ -3,7 +3,7 @@ import requests
 from ..user_agents import get_useragent
 
 
-def get_anime_rank(num_results: int = 1):
+def get_anime_rank(num_results: int = 1) -> list:
     """
     Retrieves the top d-anime rankings.
 
