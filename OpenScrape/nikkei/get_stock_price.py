@@ -1,7 +1,8 @@
 import requests
 from bs4 import BeautifulSoup
-from .user_agents import get_useragent
+from ..user_agents import get_useragent
 import re
+
 
 def get_current_value(scode):
     """
@@ -126,7 +127,7 @@ def get_stock_history(scode):
 
     params = {"scode": scode, "ba": "1"}
 
-    response = requests.get(url, params=params)
+    response = requests.get(url, headers={"User-Agent": get_useragent()}, params=params)
     soup = BeautifulSoup(response.text, "html.parser")
 
     table = soup.find("table", class_="w668")
@@ -136,7 +137,7 @@ def get_stock_history(scode):
 
     for row in rows[1:]:  # ヘッダーをスキップする。
         data = row.find_all("td")
-        date = re.sub('（.*）', '', row.find("th").get_text(strip=True)) 
+        date = re.sub("（.*）", "", row.find("th").get_text(strip=True))
         open_price = data[0].get_text(strip=True)
         high_price = data[1].get_text(strip=True)
         low_price = data[2].get_text(strip=True)

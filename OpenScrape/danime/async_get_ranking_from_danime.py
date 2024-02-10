@@ -1,5 +1,7 @@
 import json
 import aiohttp
+from ..user_agents import get_useragent
+
 
 async def get_anime_rank(num_results: int = 1):
     """
@@ -26,7 +28,10 @@ async def get_anime_rank(num_results: int = 1):
     anime_rank_array = []
 
     async with aiohttp.ClientSession() as session:
-        async with session.get("https://anime.dmkt-sp.jp/animestore/rest/WS000103?rankingType=01") as response:
+        async with session.get(
+            url="https://anime.dmkt-sp.jp/animestore/rest/WS000103?rankingType=01",
+            headers={"User-Agent": get_useragent()},
+        ) as response:
             data = await response.text()
             data = json.loads(data)
 
