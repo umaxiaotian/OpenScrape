@@ -23,21 +23,28 @@ async def search(query:str, num_results:int):
     url = "https://www.bing.com/search"
     params = {
         "q": query,
-        "count": num_results
     }
+    results_list = []
     async with aiohttp.ClientSession() as session:
-        async with session.get(url, params=params) as response:
-            text = await response.text()
-            soup = BeautifulSoup(text, 'html.parser')
-            results = soup.find_all('li', class_='b_algo')
-            results_list = []
-            for result in results:
-                title = result.find('h2').text
-                link = result.find('a')['href']
-                description = result.find('p').text if result.find('p') else ''
-                results_list.append({
-                    "title": title,
-                    "link": link,
-                    "description": description
-                })
+        while len(results_list) < num_results:
+            async with session.get(url, params=params) as response:
+                text = await response.text()
+                soup = BeautifulSoup(text, 'html.parser')
+                results = soup.find_all('li', class_='b_algo')
+                for result in results:
+                    if len(results_list) >= num_results:
+                        break
+                    title = result.find('h2').text
+                    link = result.find('a')['href']
+                    description = result.find('p').text if result.find('p') else ''
+                    results_list.append({
+                        "title": title,
+                        "link": link,
+                        "description": description
+                    })
+                next_page = soup.find('a', class_='sb_pagN')
+                if next_page:
+                    url = "https://www.bing.com" + next_page['href']
+                else:
+                    break
     return results_list
