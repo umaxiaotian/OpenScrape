@@ -64,7 +64,7 @@ Please refer to the robots.txt of each website when crawling from this library.
 | Nikkei | [https://www.nikkei.com/robots.txt](https://www.nikkei.com/robots.txt) |
 | Google LLC | [https://www.google.com/robots.txt](https://www.google.com/robots.txt) |
 | d Anime Store | [https://animestore.docomo.ne.jp/robots.txt](https://animestore.docomo.ne.jp/robots.txt) |
-
+| bing | [https://bing.com/robots.txt](https://bing.com/robots.txt) |
 
 ## Contributing
 

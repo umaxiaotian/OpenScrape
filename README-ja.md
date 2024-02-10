@@ -64,7 +64,7 @@ Jupyterのサンプルコードは[こちらのリンク](https://github.com/uma
 | 日本経済新聞社 | [https://www.nikkei.com/robots.txt](https://www.nikkei.com/robots.txt) |
 | Google LLC | [https://www.google.com/robots.txt](https://www.google.com/robots.txt) |
 | dアニメストア | [https://animestore.docomo.ne.jp/robots.txt](https://animestore.docomo.ne.jp/robots.txt) |
-
+| bing | [https://bing.com/robots.txt](https://bing.com/robots.txt) |
 
 ## 貢献
 
